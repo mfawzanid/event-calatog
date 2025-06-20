@@ -1,12 +1,19 @@
 import express from "express"
+import eventRoute from "./routes/eventRoute"
 
 const app = express()
 const port = 3000
 
 app.use(express.json())
 
+app.use("/", eventRoute);
+
 app.get("/", (req, res) => {
     res.send("Status is ok");
+})
+
+app.use((req, res) => {
+    res.status(404).json({ message: "Route not found" });
 })
 
 app.listen(port, () => {
