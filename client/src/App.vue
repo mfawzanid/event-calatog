@@ -1,39 +1,18 @@
 <script setup lang="ts">
+import { getEvents } from './api/eventService'
 import EventCard from './components/EventCard.vue'
 import type { Event } from './types/event'
+import { onMounted, ref } from 'vue'
 
-const events: Event[] = [ 
-  {
-    name: "Event 1",
-    startAt: "2025-06-20T14:30:00Z",
-    location: { name: "Location 1"},
-  },
-  {
-    name: "Event 1",
-    startAt: "2025-06-20T14:30:00Z",
-    location: { name: "Location 1"},
-  },
-  {
-    name: "Event 1",
-    startAt: "2025-06-20T14:30:00Z",
-    location: { name: "Location 1"},
-  },
-  {
-    name: "Event 1",
-    startAt: "2025-06-20T14:30:00Z",
-    location: { name: "Location 1"},
-  },
-  {
-    name: "Event 1",
-    startAt: "2025-06-20T14:30:00Z",
-    location: { name: "Location 1"},
-  },
-  {
-    name: "Event 1",
-    startAt: "2025-06-20T14:30:00Z",
-    location: { name: "Location 1"},
-  },
-]
+const events = ref<Event[]>([])
+
+onMounted(async () => {
+  const today = new Date().toISOString().split("T")[0]
+  const data = await(getEvents(today))
+  console.log('Fetched events:', data)
+  events.value = data
+})
+
 </script>
 
 <template>
@@ -41,6 +20,7 @@ const events: Event[] = [
     Event Catalog
   </header>
   <main class="main-panel">
+    <p v-if="events.length === 0">No events found</p>
     <EventCard
       v-for="(event, index) in events.slice(0,8)"
       :key="index"

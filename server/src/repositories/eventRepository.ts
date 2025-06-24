@@ -32,11 +32,39 @@ export const createEvent = async (data: { name: string; startAt: Date; locationI
 };
 
 export const getEvents = async (locationId?: string | null, startAt?: Date | null) => {
-    return prisma.event.findMany({
-        where: {
-            ...(locationId && { locationId }),
-            ...(startAt && { startAt }),
-        },
-        orderBy: { startAt: "desc" },
-    });
+    if (!startAt && !locationId) {
+        return prisma.event.findMany({
+            orderBy: { startAt: "desc" }
+        })
+    }
+
+    const conditions: string[] = []
+    const params: any[] = []
+
+    if (startAt) {
+        conditions.push(`DATE("startAt") = $${params.length + 1}::date`)
+        params.push(startAt.toISOString().split("T")[0])
+    }
+    if (locationId) {
+        conditions.push(`"locationId" = $${params.length + 1}`)
+        params.push(locationId)
+    }
+
+
+    const whereClause = conditions.length ? `WHERE ${conditions.join(" AND ")}` : ""
+
+    console.log('WHERE clause:', whereClause)
+    console.log('params:', params)
+
+    const query = `SELECT 
+                        e.*,
+                        l.name AS "locationName",
+                        s.name AS "speakerName"
+                    FROM "event" e 
+                    INNER JOIN "location" l ON e."locationId"  = l.id
+                    LEFT JOIN speaker s ON e."speakerId" = s.id
+                    ${whereClause}
+                    ORDER BY "startAt" DESC`
+
+    return prisma.$queryRawUnsafe(query, ...params)
 };

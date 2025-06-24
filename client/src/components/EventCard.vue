@@ -2,7 +2,7 @@
     <div class="event-card">
         <h3 class="event-title">{{  event.name }}</h3>
         <p class="event-date">{{ formatDate(event.startAt) }}</p>
-        <p class="event-location"> {{ event.location.name }}</p>
+        <p class="event-location"> {{ event.locationName }}</p>
     </div>
 </template>
 
@@ -11,7 +11,7 @@ defineProps<{
     event: {
         name: string
         startAt: string | Date
-        location: { name: string }
+        locationName: string,
     }
 }>()
 
