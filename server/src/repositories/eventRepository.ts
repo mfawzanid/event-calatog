@@ -50,11 +50,7 @@ export const getEvents = async (locationId?: string | null, startAt?: Date | nul
         params.push(locationId)
     }
 
-
     const whereClause = conditions.length ? `WHERE ${conditions.join(" AND ")}` : ""
-
-    console.log('WHERE clause:', whereClause)
-    console.log('params:', params)
 
     const query = `SELECT 
                         e.*,

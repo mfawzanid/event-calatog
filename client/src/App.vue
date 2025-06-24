@@ -9,7 +9,6 @@ const events = ref<Event[]>([])
 onMounted(async () => {
   const today = new Date().toISOString().split("T")[0]
   const data = await(getEvents(today))
-  console.log('Fetched events:', data)
   events.value = data
 })
 
