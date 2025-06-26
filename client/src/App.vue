@@ -15,29 +15,41 @@ onMounted(async () => {
 </script>
 
 <template>
-  <header class="top-panel">
-    Event Catalog
-  </header>
-  <main class="main-panel">
-    <p v-if="events.length === 0">No events found</p>
-    <EventCard
-      v-for="(event, index) in events.slice(0,8)"
-      :key="index"
-      :event="event"
-    />
-  </main>
+  <div class="app">
+    <div class="top-panel">
+      Event Catalog
+    </div>
+    <main class="main-panel">
+      <p v-if="events.length === 0">No events found</p>
+      <EventCard
+        v-for="(event, index) in events.slice(0,8)"
+        :key="index"
+        :event="event"
+      />
+    </main>
+  </div>
 </template>
 
 <style scoped>
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
 .top-panel {
   font-size: 2rem;
   font-weight: bold;
+  border-bottom: 1px solid;
+  display: flex;
+  padding: 0.5rem;
 }
 
 .main-panel {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
-  padding: 1rem;
+  margin-top: 1rem;
 }
 </style>
