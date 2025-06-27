@@ -49,9 +49,11 @@ html, body, #app {
 .top-panel {
   font-size: 1.5rem;
   font-weight: bold;
+  color: black;
+  background-color: white;
   display: flex;
   padding: 1rem;
-  border-bottom: 1px solid;
+
 }
 
 .main-panel {
