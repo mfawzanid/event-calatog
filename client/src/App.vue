@@ -17,7 +17,7 @@ onMounted(async () => {
 <template>
   <div class="app">
     <div class="top-panel">
-      Event Catalog
+      event catalog
     </div>
     <main class="main-panel">
       <p v-if="events.length === 0">No events found</p>
@@ -47,10 +47,11 @@ html, body, #app {
 }
 
 .top-panel {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   display: flex;
   padding: 1rem;
+  border-bottom: 1px solid;
 }
 
 .main-panel {

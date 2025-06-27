@@ -1,8 +1,13 @@
 <template>
     <div class="event-card">
-        <h3 class="event-title">{{  event.name }}</h3>
-        <p class="event-date">{{ formatDate(event.startAt) }}</p>
-        <p class="event-location"> {{ event.locationName }}</p>
+        <div class="event">
+            <div class="event-title">{{  event.name }}</div>
+            <div class="separator"></div>
+            <div class="event-info">
+                <p class="event-date">{{ formatDate(event.startAt) }}</p>
+                <p class="event-location"> {{ event.locationName }}</p>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -16,7 +21,7 @@ defineProps<{
 }>()
 
 const formatDate = (date: string | Date) =>
-    new Intl.DateTimeFormat("en-US", {
+    new Intl.DateTimeFormat("id-ID", {
         dateStyle: "medium",
         timeStyle: "short",
     }).format(new Date(date))
@@ -25,20 +30,46 @@ const formatDate = (date: string | Date) =>
 
 <style scoped>
 .event-card {
+  height: 150px;
+  width: 300px;
   padding: 16px;
-  border: 1px solid grey;
-  border-radius: 8px;       
+  border-radius: 10px;
+  box-shadow: #ccc 0px 1px 4px;
+}
+
+.event {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
 .event-title {
-    font-size: 2rem;
+  display: flex;
+  flex: 2;
+  font-size: 0.75rem;
+  font-weight: bold;
+  justify-content: center;
 }
 
-.event-date {
-    font-size: 1rem;
+.event-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 0.75rem;
 }
 
+
+.event-date,
 .event-location {
-    font-size: 1rem;
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.separator {
+  height: 1px;
+  background-color: #ccc;
+  margin: 0.5rem;
 }
 </style>
