@@ -30,7 +30,15 @@ onMounted(async () => {
   </div>
 </template>
 
-<style scoped>
+<style>
+html, body, #app {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
 .app {
   display: flex;
   flex-direction: column;
@@ -41,15 +49,14 @@ onMounted(async () => {
 .top-panel {
   font-size: 2rem;
   font-weight: bold;
-  border-bottom: 1px solid;
   display: flex;
-  padding: 0.5rem;
+  padding: 1rem;
 }
 
 .main-panel {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
-  margin-top: 1rem;
+  padding: 1rem;
 }
 </style>
