@@ -34,7 +34,8 @@ const formatDate = (date: string | Date) =>
   width: 300px;
   padding: 16px;
   border-radius: 10px;
-  box-shadow: #ccc 0px 1px 4px;
+  /* box-shadow: #ccc 0px 1px 4px; */
+  background-color: white;
 }
 
 .event {
@@ -42,6 +43,7 @@ const formatDate = (date: string | Date) =>
   flex-direction: column;
   height: 100%;
   width: 100%;
+  color: black;
 }
 
 .event-title {
@@ -60,7 +62,6 @@ const formatDate = (date: string | Date) =>
   font-size: 0.75rem;
 }
 
-
 .event-date,
 .event-location {
   font-size: 0.75rem;
@@ -68,8 +69,8 @@ const formatDate = (date: string | Date) =>
 }
 
 .separator {
-  height: 1px;
-  background-color: #ccc;
+  height: 3px;
+  background-color: #d6d6d6;
   margin: 0.5rem;
 }
 </style>
