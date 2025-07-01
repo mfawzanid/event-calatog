@@ -5,6 +5,7 @@ import type { Event } from './types/event'
 import { onMounted, ref } from 'vue'
 
 const events = ref<Event[]>([])
+const pageTitle = import.meta.env.VITE_PAGE_TITLE
 
 onMounted(async () => {
   const today = new Date().toISOString().split("T")[0]
@@ -17,7 +18,7 @@ onMounted(async () => {
 <template>
   <div class="app">
     <div class="top-panel">
-      event catalog
+      {{ pageTitle }}
     </div>
     <main class="main-panel">
       <p v-if="events.length === 0">No events found</p>
