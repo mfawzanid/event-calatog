@@ -2,22 +2,21 @@
     <div class="event-card">
         <div class="event">
             <div class="event-title">{{  event.name }}</div>
-            <div class="separator"></div>
             <div class="event-info">
+                <p class="event-speaker">{{  event.speakerName }}</p>
                 <p class="event-date">{{ formatDate(event.startAt) }}</p>
                 <p class="event-location"> {{ event.locationName }}</p>
             </div>
+            <div class="separator"></div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import type { Event } from '../types/event'
+
 defineProps<{
-    event: {
-        name: string
-        startAt: string | Date
-        locationName: string,
-    }
+    event: Event
 }>()
 
 const formatDate = (date: string | Date) =>
@@ -34,7 +33,6 @@ const formatDate = (date: string | Date) =>
   width: 300px;
   padding: 16px;
   border-radius: 10px;
-  /* box-shadow: #ccc 0px 1px 4px; */
   background-color: white;
 }
 
@@ -48,20 +46,21 @@ const formatDate = (date: string | Date) =>
 
 .event-title {
   display: flex;
-  flex: 2;
   font-size: 0.75rem;
   font-weight: bold;
-  justify-content: center;
+  margin-left: 0.5rem;
 }
 
 .event-info {
   display: flex;
-  flex: 1;
   flex-direction: column;
   justify-content: center;
   font-size: 0.75rem;
+  align-items: flex-start;
+  margin-left: 0.5rem;
 }
 
+.event-speaker,
 .event-date,
 .event-location {
   font-size: 0.75rem;

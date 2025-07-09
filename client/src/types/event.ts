@@ -1,5 +1,6 @@
 export interface Event {
     name: string,
     startAt: string | Date,
-    locationName: string
+    locationName: string,
+    speakerName: string,
 }
