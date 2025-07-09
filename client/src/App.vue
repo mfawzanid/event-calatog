@@ -23,7 +23,7 @@ onMounted(async () => {
     <main class="main-panel">
       <p v-if="events.length === 0">No events found</p>
       <EventCard
-        v-for="(event, index) in events.slice(0,8)"
+        v-for="(event, index) in events"
         :key="index"
         :event="event"
       />
@@ -38,6 +38,9 @@ html, body, #app {
   height: 100vh;
   width: 100vw;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .app {
@@ -54,7 +57,7 @@ html, body, #app {
   background-color: white;
   display: flex;
   padding: 1rem;
-
+  border-bottom: 2px solid #ccc;
 }
 
 .main-panel {
@@ -62,5 +65,8 @@ html, body, #app {
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   padding: 1rem;
+
+  flex: 1;
+  overflow-y: auto;
 }
 </style>
